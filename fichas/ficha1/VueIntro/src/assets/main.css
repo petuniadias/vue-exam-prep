@@ -1,0 +1,24 @@
+@import "tailwindcss";
+
+@theme {
+    --color-brand-primary: #425FAF;
+    --color-brand-secondary: #D13632;
+    --color-brand-white: #F2F2E6;
+    --color-brand-gray: #BFC2C6;
+    --color-brand-black: #353535;
+}
+
+@layer base {
+    body {
+        @apply text-brand-black text-sm bg-brand-white;
+        font-family: "Roboto", sans-serif;
+    }
+
+    h1 {
+        @apply text-brand-primary text-3xl font-bold;
+    }
+
+    button {
+        @apply bg-brand-primary px-[16px] py-[12px] text-brand-white cursor-pointer text-base font-semibold rounded-[6px];
+    }
+}
