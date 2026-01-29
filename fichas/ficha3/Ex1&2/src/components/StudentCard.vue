@@ -1,8 +1,6 @@
 <template>
     <div>
-        <h2>
-            {{ name }}
-        </h2>
+        <h2>{{ name }}</h2>
         <p>{{ studentNumber }}</p>
         <p>{{ course }}</p>
         <p>{{ year }}</p>
@@ -46,3 +44,4 @@
         }
     }
 </script>
+
