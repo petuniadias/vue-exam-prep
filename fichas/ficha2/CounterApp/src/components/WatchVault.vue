@@ -1,4 +1,7 @@
 <template>
+    <h1>
+        Total: {{ countItems }} ({{ countSeries }} series, {{ countMovies }} movies)
+    </h1>
     <form @submit.prevent="addNewItem">
         <div>
             <input type="radio" name="type" value="series" v-model="serie.type">
@@ -35,7 +38,7 @@
             <option value="rating">Por rating</option>
         </select>
 
-        <div v-if="items.length > 0" v-for="item in items" :key="item.id">
+        <div v-if="items.length > 0" v-for="item in sortedItems" :key="item.id">
             <div id="type">{{ item.type }}</div>
             <div id="name">{{ item.name }}</div>
             <div id="category">{{ item.category }}</div>
@@ -64,12 +67,35 @@
         },
 
         computed: {
-            sortBy() {
-                if(this.sortBy === "alfabeticamente") {
+            countItems() {
+                return this.items.length;
+            },
 
-                } else if (this.sortBy === "rating") {
+            countSeries() {
+                const series = this.items.filter(item => item.type === "series");
+                return series.length;
+            },
 
-                }
+            countMovies() {
+                const movies = this.items.filter(item => item.type === "movies");
+                return movies.length;
+            },
+
+            sortedItems() {
+                let compareA, compareB;
+                return this.items.toSorted((a, b) => {
+                    if(this.sortBy === "alfabeticamente") {
+                        compareA = a.name.toLowerCase();
+                        compareB = b.name.toLowerCase();
+                        return compareA.localeCompare(compareB);
+                    } 
+                    
+                    if(this.sortBy === "rating") {
+                        return b.rating - a.rating;
+                    }
+
+                    return 0;
+                });
             }
         },
 
