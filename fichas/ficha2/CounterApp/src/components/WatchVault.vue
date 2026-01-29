@@ -63,6 +63,7 @@
                 newItem: {type: "", name: "", category: "", rating: 0},
                 sortBy: "alfabeticamente",
                 sortOrder: "asc",
+                STORAGE_KEY: 'watchlist_items'
             }
         },
 
@@ -99,6 +100,19 @@
             }
         },
 
+        watch: {
+            items: {
+                handler() {
+                    this.saveToLocalStorage();
+                },
+                deep: true
+            }
+        },
+        
+        mounted() {
+            this.getFromLocalStorage();
+        },
+
         methods: {
             addNewItem() {
                 const uuid = self.crypto.randomUUID();
@@ -129,6 +143,33 @@
                     if (index !== -1) {
                         this.items.splice(index, 1);
                     }
+                }
+            },
+
+            saveToLocalStorage() {
+                try {
+                    localStorage.setItem(this.STORAGE_KEY, JSON.stringify(this.items));
+                } catch (error) {
+                    console.error("Error saving to localStorage:", error);
+                }
+            },
+
+            getFromLocalStorage() {
+                try {
+                    const data = localStorage.getItem(this.STORAGE_KEY);
+                    if (data) {
+                        this.items = JSON.parse(data);
+                    }
+                } catch (error) {
+                    console.error("Error loading from localStorage:", error);
+                }
+            },
+
+            removeFromLocalStorage() {
+                try {
+                    localStorage.removeItem(this.STORAGE_KEY);
+                } catch (error) {
+                    console.error("Error removing from localStorage", error);
                 }
             }
         }
