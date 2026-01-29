@@ -37,7 +37,7 @@
             <option value="alfabeticamente">Alfabeticamente</option>
             <option value="rating">Por rating</option>
         </select>
-
+        <button @click="toggleOrder">{{ sortOrder }}</button>
         <div v-if="items.length > 0" v-for="item in sortedItems" :key="item.id">
             <div id="type">{{ item.type }}</div>
             <div id="name">{{ item.name }}</div>
@@ -59,8 +59,7 @@
         data() {
             return {
                 items: [],
-                serie: {id: "", type: "", name: "", category: "", rating: 0},
-                newItem: {type: "", name: "", category: "", rating: 0},
+                serie: {id: "", type: "series", name: "", category: "romance", rating: 0},
                 sortBy: "alfabeticamente",
                 sortOrder: "asc",
                 STORAGE_KEY: 'watchlist_items'
@@ -88,11 +87,15 @@
                     if(this.sortBy === "alfabeticamente") {
                         compareA = a.name.toLowerCase();
                         compareB = b.name.toLowerCase();
-                        return compareA.localeCompare(compareB);
+                        if(this.sortOrder === "desc") {
+                            return compareA.localeCompare(compareB);
+                        } else {
+                            return compareB.localeCompare(compareA);
+                        }
                     } 
                     
                     if(this.sortBy === "rating") {
-                        return b.rating - a.rating;
+                        return this.sortOrder === "desc" ? b.rating - a.rating : a.rating - b.rating;
                     }
 
                     return 0;
@@ -133,7 +136,7 @@
             },
 
             clearForm() {
-                this.serie = {id: "", type: "", name: "", category: "", rating: 0}
+                this.serie = {id: "", type: "series", name: "", category: "romance", rating: 0}
             },
 
             removeItem(item) {
@@ -144,6 +147,10 @@
                         this.items.splice(index, 1);
                     }
                 }
+            },
+
+            toggleOrder() {
+                this.sortOrder = this.sortOrder === "asc" ? "desc" : "asc";
             },
 
             saveToLocalStorage() {
