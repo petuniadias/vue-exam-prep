@@ -1,30 +1,26 @@
 <template>
-    <div v-if="article">
-        <h2>Título do artigo</h2>
-        <h1>{{ article.title }}</h1>
-        <p>{{ article.title }}</p>
-        <p>{{ article.excerpt }}</p>
-        <p>{{ article.content }}</p>
+    <div v-if="getArticle">
+        <h1>{{ getArticle.title }}</h1>
+        <p>{{ getArticle.title }}</p>
+        <p>{{ getArticle.excerpt }}</p>
+        <p>{{ getArticle.content }}</p>
     </div>
 </template>
 
-<script>
+<script>    
+    import { articles } from '@/data/tech-blog';
     export default {
         name: "ArticleView",
-        props: {
-            article: {
-                type: Object,
-                required: true,
-                validator(value) {
-                return value.title && value.author && value.excerpt && value.content
-                }
+        data() {
+            return {
+                articles: articles
             }
         },
         computed: {
-            article() {
+            getArticle() {
                 const id = this.$route.params.id
                 return this.articles.find(a => a.id === id);
-            }
+            },
         }
     }
 </script>
