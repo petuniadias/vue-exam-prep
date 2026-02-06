@@ -1,11 +1,21 @@
-<script setup></script>
-
 <template>
-  <h1>You did it!</h1>
-  <p>
-    Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a> to read the
-    documentation
-  </p>
+  <Forms 
+    style="
+      margin-bottom: 24px;
+    "
+  />
+  <Tasks />
 </template>
 
-<style scoped></style>
+<script>
+import Forms from './components/Forms.vue';
+import Tasks from './components/Tasks.vue';
+
+  export default {
+    name: 'App',
+    components: {
+      Forms,
+      Tasks
+    }
+  }
+</script>
