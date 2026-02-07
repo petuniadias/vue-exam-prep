@@ -38,7 +38,7 @@ export const useShoppingCartStore = defineStore('use-shopping-cart',  {
         addItem(product) {
             const existingItem = this.cartItems.find(p => p.id === product.id);
             if (existingItem) {
-                existingItem.quantity += 1
+                this.incrementQuantity(existingItem.id)
                 return
             }
 
