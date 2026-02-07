@@ -26,6 +26,7 @@
         </div>
     </div>
     <div>
+        <p>Discount: {{ formatPrice(discountValue) }}</p>
         <p>Subtotal: {{ formatPrice(subtotal) }}</p>
         <h3>Total: {{ formatPrice(finalTotal) }} c/iva {{ formatPrice(totalAfterDiscount) }} s/iva</h3>
     </div>
@@ -42,7 +43,7 @@ import { formatPrice } from '@/utils/formatPrice';
 
         },
         computed: {
-            ...mapState(useShoppingCartStore, ['cartItems', 'subtotal', 'isCartEmpty', 'finalTotal', 'getIVA', 'discountCode', 'totalCartItems', 'totalAfterDiscount'])
+            ...mapState(useShoppingCartStore, ['cartItems', 'subtotal', 'isCartEmpty', 'finalTotal', 'getIVA', 'discountCode', 'totalCartItems', 'totalAfterDiscount', 'discountValue'])
         },
 
         methods: {
