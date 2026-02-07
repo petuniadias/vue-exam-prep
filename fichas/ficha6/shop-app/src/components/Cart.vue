@@ -26,14 +26,15 @@
         </div>
     </div>
     <div>
-        <p>Subtotal: {{ subtotal }}</p>
-        <h3>Total: {{ finalTotal }} c/iva {{ totalAfterDiscount }} s/iva</h3>
+        <p>Subtotal: {{ formatPrice(subtotal) }}</p>
+        <h3>Total: {{ formatPrice(finalTotal) }} c/iva {{ formatPrice(totalAfterDiscount) }} s/iva</h3>
     </div>
 </template>
 
 <script>
 import { useShoppingCartStore } from '@/stores/useShoppingCart';
 import { mapActions, mapState } from 'pinia';
+import { formatPrice } from '@/utils/formatPrice';
 
     export default {
         name: 'Cart',
@@ -56,9 +57,7 @@ import { mapActions, mapState } from 'pinia';
                 }
             },
 
-            formatPrice(value) {
-
-            }
+            formatPrice
         }
     }
 </script>

@@ -3,7 +3,7 @@
     <div style="display: grid; grid-template-columns: 1fr 1fr 1fr;">
         <div v-for="product in products" :key="product.id">
             <h3>{{ product.name }}</h3>
-            <p>{{ product.price }}</p>
+            <p>{{ formatPrice(product.price) }}</p>
             <button @click="addItem(product)">Add to cart</button>
         </div>
     </div>
@@ -11,6 +11,7 @@
 </template>
 
 <script>
+import { formatPrice } from '@/utils/formatPrice';
 import { useShoppingCartStore } from '@/stores/useShoppingCart';
 import { mapActions, mapState } from 'pinia';
 
@@ -70,7 +71,8 @@ import { mapActions, mapState } from 'pinia';
         },
 
         methods: {
-            ...mapActions(useShoppingCartStore, ['addItem'])
+            ...mapActions(useShoppingCartStore, ['addItem']),
+            formatPrice
         }
     }
 </script>
