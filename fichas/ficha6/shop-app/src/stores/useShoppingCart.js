@@ -28,7 +28,7 @@ export const useShoppingCartStore = defineStore('use-shopping-cart',  {
             return this.totalAfterDiscount * IVA;
         },
         finalTotal() {
-            return this.totalAfterDiscount + this.getIVA()
+            return this.totalAfterDiscount + this.getIVA
         },
         totalCartItems: (state) => state.cartItems.reduce((acc, item) => acc + item.quantity, 0),
         isCartEmpty: (state) => state.cartItems.length === 0
@@ -92,15 +92,21 @@ export const useShoppingCartStore = defineStore('use-shopping-cart',  {
         },
 
         applyDiscount(code) {
+            if (this.discountCode) return 
+
             if (code === 'SAVE10') {
                 this.discountCode = code
-                this.discountPercentage = 10 
+                this.discountPercentage = 10
+                return
             }
 
             if (code === 'SAVE20') {
                 this.discountCode = code
                 this.discountPercentage = 20
+                return
             }
+
+            throw new Error('Discount code not valid!')
         },
 
         removeDiscount() {
