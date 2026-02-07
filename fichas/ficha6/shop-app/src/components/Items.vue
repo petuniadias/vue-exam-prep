@@ -1,4 +1,5 @@
 <template>
+    <h1>Catálogo</h1>
     <div style="display: grid; grid-template-columns: 1fr 1fr 1fr;">
         <div v-for="product in products" :key="product.id">
             <h3>{{ product.name }}</h3>
@@ -65,7 +66,7 @@ import { mapActions, mapState } from 'pinia';
         },
 
         computed: {
-            ...mapState(useShoppingCartStore, ['cartItems',])
+            ...mapState(useShoppingCartStore, ['cartItems'])
         },
 
         methods: {
