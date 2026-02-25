@@ -1,0 +1,37 @@
+{
+  "books": [
+    {
+      "id": "2",
+      "title": "To Kill a Mockingbird",
+      "author": "Harper Lee",
+      "isbn": "9780061120084",
+      "year": 1960,
+      "genre": "Classic",
+      "available": false,
+      "rating": 4.9,
+      "imageURL": "https://example.com/mockingbird.jpg"
+    },
+    {
+      "id": "3",
+      "title": "The Hobbit",
+      "author": "J.R.R. Tolkien",
+      "isbn": "9780547928227",
+      "year": 1937,
+      "genre": "Fantasy",
+      "available": true,
+      "rating": 4.7,
+      "imageURL": "https://example.com/hobbit.jpg"
+    },
+    {
+      "id": "2fbc",
+      "title": "Atomic Habits",
+      "author": "James Clear",
+      "isbn": "978-0735211292",
+      "year": 2018,
+      "genre": "Self-help",
+      "available": true,
+      "rating": 4,
+      "imageURL": "https://m.media-amazon.com/images/I/91bYsX41DVL.jpg"
+    }
+  ]
+}
